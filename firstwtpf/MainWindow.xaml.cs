@@ -4,6 +4,7 @@ using System.Windows.Controls;
 
 using System.Collections.Generic;
 using System.Xml;
+using System.Xml.Serialization;
 
 namespace FirstWpfApp { 
     public partial class MainWindow : Window {
@@ -15,7 +16,6 @@ namespace FirstWpfApp {
             XmlDocument xd = new XmlDocument();
             xd.Load("XMLFile1.xml");
             XmlElement xRoot = xd.DocumentElement;          //get root element
-                        
             foreach (XmlNode xNode in xRoot) {
                 Picture pic = new Picture();
                 foreach (XmlNode childNode in xNode.ChildNodes) {
@@ -54,13 +54,31 @@ namespace FirstWpfApp {
             }
         }
 
-        private void Exit_Click(object sender, RoutedEventArgs e) { 
+        private void Exit_Click(object sender, RoutedEventArgs e) {
             this.Close();
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e) {
-            while (artlist.SelectedItems.Count > 0) {
-                artlist.Items.Remove(artlist.SelectedItem);
+            int count = artlist.SelectedItems.Count;
+
+            XmlDocument xd = new XmlDocument();
+            xd.Load("XMLFile1.xml");
+            XmlElement xRoot = xd.DocumentElement;
+
+            if (count > 0) {
+                while (artlist.SelectedItems.Count > 0) {
+                    dynamic selectedItem = artlist.SelectedItem;
+                    var p = selectedItem.Painter;
+                    XmlNode node = xd.SelectSingleNode("/pictures/picture[Painter='" + p + "']");
+                    node.ParentNode.RemoveChild(node);
+
+                    xd.Save("XMLFile1.xml");
+
+                    artlist.Items.Remove(artlist.SelectedItem);
+                }
+            }
+            if(artlist.Items.Count == 0) {
+                delete_button.IsEnabled = false;
             }
         }
 

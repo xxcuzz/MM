@@ -45,7 +45,7 @@
             </Button.Background>
         </Button>
         <Button 
-            x:Name="delete_art"
+            x:Name="delete_button"
             Grid.Column="0"
             Grid.Row="2"
             Style="{StaticResource LightKhakiButton}"
