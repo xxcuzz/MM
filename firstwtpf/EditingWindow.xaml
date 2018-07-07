@@ -1,0 +1,47 @@
+﻿<Window x:Class="firstwtpf.EditingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:firstwtpf"
+        mc:Ignorable="d"
+        Title="Edit" Height="250" Width="400"
+        WindowStyle="None" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    <Grid Background="#4a756e">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="101*"/>
+            <ColumnDefinition Width="291*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Height="18" Margin="0,18,10,19" Width="39">Painter:</TextBlock>
+        <TextBlock Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Height="18" Margin="0,19,10,18" Width="25">Title:</TextBlock>
+        <TextBlock Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Height="18" Margin="0,18,10,19" Width="63">Description:</TextBlock>
+
+        <TextBox x:Name="PainterBox" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="18" Margin="10,10,10,10" Background="#f2edb3" ></TextBox>
+        <TextBox x:Name="TitleBox" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="18" Margin="10,10,10,10" Background="#f2edb3"></TextBox>
+        <TextBox x:Name="DescriptionBox" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="18" Margin="10,10,10,10" Background="#f2edb3"></TextBox>
+        <Button 
+            x:Name="Apply_Button"
+            Grid.Column="1"
+            Grid.Row="3"
+            Content="Apply"
+            Background="#f2edb3"
+            Margin="10 10 10 10"
+            Click="Apply_Click"/>
+        <Button 
+            x:Name="Cancel_Button"
+            Grid.Column="0"
+            Grid.Row="3"
+            Content="Cancel"
+            Margin="10 10 10 10"
+            Background="#c7cf94"
+            Click="Cancel_Click"/>
+
+    </Grid>
+</Window>

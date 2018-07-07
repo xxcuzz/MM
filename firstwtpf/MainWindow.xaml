@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         WindowStyle="ToolWindow" ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        Title="Modern Museum" Height="250" Width = "1000">
+        Title="Modern Museum" Height="250" Width = "1300">
     <Window.Resources>
         <Style x:Key ="LightKhakiButton">
             <Setter Property="Control.Margin" Value="10 14 10 14"/>
@@ -26,13 +26,13 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="1200"/>
         </Grid.ColumnDefinitions>
         <Button 
             x:Name="add_button"
             Grid.Column="0"
-            Grid.Row="1"
+            Grid.Row="0"
             Style="{StaticResource LightKhakiButton}"
             HorizontalContentAlignment="Left"
             BorderThickness="0"
@@ -45,6 +45,23 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
+
+        <Button x:Name="edit_button"
+            Grid.Column="0"
+            Grid.Row="1"
+            Style="{StaticResource LightKhakiButton}"
+            HorizontalContentAlignment="Left"
+            Click="Edit_Click"
+            BorderThickness="0">
+            <Button.Background>
+                <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+                    <GradientStop Color="#4a756e" Offset="0"/>
+                    <GradientStop Color="#f2edb3" Offset="0.5"/>
+                </LinearGradientBrush>
+            </Button.Background> 
+            Edit
+        </Button>
+        
         <Button 
             x:Name="delete_button"
             Grid.Column="0"
@@ -72,16 +89,16 @@
             HorizontalAlignment="Left"
             Background="#c7cf94">Exit</Button>
         <ListView
-            Name="artlist"
+            Name="artlist"            
             Grid.Column="1"
             Grid.RowSpan="4"
             Margin="10"
             Background="#f2edb3">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Painter}" Width="200">Painter </GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Title}" Width="200">Title</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Description}" Width="340">Description</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Painter}" Width="250">Painter </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Title}" Width="250">Title</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Description}" Width="650">Description</GridViewColumn>
                 </GridView>
             </ListView.View>
             <ListView.Resources>
