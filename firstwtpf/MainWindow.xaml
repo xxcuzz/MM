@@ -17,7 +17,7 @@
         </Style>
 
     </Window.Resources>
-    
+
     <Grid x:Name ="LayoutRoot" Background="#4a756e">
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -88,8 +88,8 @@
             Width="50"
             HorizontalAlignment="Left"
             Background="#c7cf94">Exit</Button>
-        <ListView
-            Name="artlist"            
+        <ListView 
+            Name="artlist"  
             Grid.Column="1"
             Grid.RowSpan="4"
             Margin="10"
@@ -101,6 +101,12 @@
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Description}" Width="650">Description</GridViewColumn>
                 </GridView>
             </ListView.View>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <EventSetter Event="MouseDoubleClick" Handler="HandlerClick"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            
             <ListView.Resources>
                 
             </ListView.Resources>

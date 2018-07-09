@@ -72,6 +72,9 @@
     <Compile Include="EditingWindow.xaml.cs">
       <DependentUpon>EditingWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Watch_out.xaml.cs">
+      <DependentUpon>Watch_out.xaml</DependentUpon>
+    </Compile>
     <Page Include="AddingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -92,6 +95,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="EditingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Watch_out.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

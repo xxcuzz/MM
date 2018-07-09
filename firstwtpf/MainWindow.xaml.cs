@@ -1,6 +1,9 @@
 ﻿using System.Windows;
 using System.Xml;
 
+using System.Windows.Input;
+using System.Windows.Controls;
+
 namespace FirstWpfApp {
     public partial class MainWindow : Window {
         public static int fl = 0;           //bad
@@ -166,5 +169,12 @@ namespace FirstWpfApp {
             xRoot.AppendChild(picElem);
             xd.Save("XMLFile1.xml");
         }
+
+        private void HandlerClick(object sender, MouseButtonEventArgs e) {
+            dynamic selectedItem = artlist.SelectedItem;
+            string p = selectedItem.Title;
+
+            firstwtpf.Watch_out wat = new firstwtpf.Watch_out (p){ Owner = this };
+        }        
     }
 }
