@@ -71,35 +71,6 @@ namespace FirstWpfApp {
                     Owner = this
                 };
                 epicWin.ShowDialog();
-
-                //в метод
-                /*XmlDocument xd = new XmlDocument();
-                xd.Load("XMLFile1.xml");
-                XmlElement xRoot = xd.DocumentElement;
-                Picture pic = new Picture();
-                XmlNode xNode = xRoot.LastChild;
-                foreach (XmlNode childNode in xNode.ChildNodes) {
-                if (childNode.Name == "Painter") {
-                    pic.Painter = childNode.InnerText;
-                }
-
-                if (childNode.Name == "Title") {
-                    pic.Title = childNode.InnerText;
-                }
-
-                    if (childNode.Name == "Description") {
-                        pic.Description = childNode.InnerText;
-                    }
-                }                   
-                artlist.Items.Add(pic);
-                
-                selectedItem = artlist.SelectedItem;
-                p = selectedItem.Painter;
-                XmlNode node = xd.SelectSingleNode("/pictures/picture[Painter='" + p + "']");
-                node.ParentNode.RemoveChild(node);
-                xd.Save("XMLFile1.xml");
-                artlist.Items.Remove(artlist.SelectedItem);
-                */
             }
         }
 
