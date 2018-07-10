@@ -32,8 +32,7 @@
             Grid.Row="3"
             Content="Apply"
             Background="#f2edb3"
-            Margin="10 10 10 10"
-            Click="Apply_Click"/>
+            Margin="10 10 10 10"/>
         <Button 
             x:Name="Cancel_Button"
             Grid.Column="0"

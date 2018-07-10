@@ -1,16 +1,18 @@
-﻿using System.Windows;
+﻿using System;
 using System.Xml;
-
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Controls;
 
 namespace FirstWpfApp {
     public partial class MainWindow : Window {
-        public static int fl = 0;           //bad
-
         public MainWindow() {
             InitializeComponent();
-            
+
+            add_button.Click += (sender, EventArgs) => {
+                Add_Click(sender, EventArgs, artlist);
+            };
+
             XmlDocument xd = new XmlDocument();
             xd.Load("XMLFile1.xml");
             XmlElement xRoot = xd.DocumentElement;          
@@ -50,82 +52,62 @@ namespace FirstWpfApp {
                 this.Description = c;
             }
         }
-
-        private void Add_Click(object sender, RoutedEventArgs e) {
-            firstwtpf.AddingWindow adding = new firstwtpf.AddingWindow {
+        
+        private void Add_Click(object sender, EventArgs e, ListView a) {       
+            firstwtpf.AddingWindow adding = new firstwtpf.AddingWindow(a) {
                 Owner = this
             };
             adding.ShowDialog();
-            if (fl == 0) {
-                XmlDocument xd = new XmlDocument();
-                xd.Load("XMLFile1.xml");
-                XmlElement xRoot = xd.DocumentElement;
-                Picture pic = new Picture();
-                XmlNode xNode = xRoot.LastChild;
-                foreach (XmlNode childNode in xNode.ChildNodes) {
-                    if (childNode.Name == "Painter") {
-                        pic.Painter = childNode.InnerText;
-                    }
-
-                    if (childNode.Name == "Title") {
-                        pic.Title = childNode.InnerText;
-                    }
-
-                    if (childNode.Name == "Description") {
-                        pic.Description = childNode.InnerText;
-                    }
-                }
-                artlist.Items.Add(pic);
-            }
         }
 
-        private void Edit_Click(object sender, RoutedEventArgs e) {
+        private void Edit_Click(object sender, EventArgs e) {
             dynamic selectedItem = artlist.SelectedItem;
             if (selectedItem != null && artlist.SelectedItems.Count == 1) {
                 string p = selectedItem.Painter;
                 string t = selectedItem.Title;
                 string d = selectedItem.Description;
 
-                firstwtpf.EditingWindow epicWin = new firstwtpf.EditingWindow(p, t, d) {
+                firstwtpf.EditingWindow epicWin = new firstwtpf.EditingWindow(p, t, d, artlist) {
                     Owner = this
                 };
                 epicWin.ShowDialog();
-                if (fl == 0) {
-                    XmlDocument xd = new XmlDocument();
-                    xd.Load("XMLFile1.xml");
-                    XmlElement xRoot = xd.DocumentElement;
-                    Picture pic = new Picture();
-                    XmlNode xNode = xRoot.LastChild;
-                    foreach (XmlNode childNode in xNode.ChildNodes) {
-                        if (childNode.Name == "Painter") {
-                            pic.Painter = childNode.InnerText;
-                        }
 
-                        if (childNode.Name == "Title") {
-                            pic.Title = childNode.InnerText;
-                        }
-
-                        if (childNode.Name == "Description") {
-                            pic.Description = childNode.InnerText;
-                        }
-                    }                   
-                    artlist.Items.Add(pic);
-
-                    selectedItem = artlist.SelectedItem;
-                    p = selectedItem.Painter;
-                    XmlNode node = xd.SelectSingleNode("/pictures/picture[Painter='" + p + "']");
-                    node.ParentNode.RemoveChild(node);
-                    xd.Save("XMLFile1.xml");
-                    artlist.Items.Remove(artlist.SelectedItem);
+                //в метод
+                /*XmlDocument xd = new XmlDocument();
+                xd.Load("XMLFile1.xml");
+                XmlElement xRoot = xd.DocumentElement;
+                Picture pic = new Picture();
+                XmlNode xNode = xRoot.LastChild;
+                foreach (XmlNode childNode in xNode.ChildNodes) {
+                if (childNode.Name == "Painter") {
+                    pic.Painter = childNode.InnerText;
                 }
+
+                if (childNode.Name == "Title") {
+                    pic.Title = childNode.InnerText;
+                }
+
+                    if (childNode.Name == "Description") {
+                        pic.Description = childNode.InnerText;
+                    }
+                }                   
+                artlist.Items.Add(pic);
+                
+                selectedItem = artlist.SelectedItem;
+                p = selectedItem.Painter;
+                XmlNode node = xd.SelectSingleNode("/pictures/picture[Painter='" + p + "']");
+                node.ParentNode.RemoveChild(node);
+                xd.Save("XMLFile1.xml");
+                artlist.Items.Remove(artlist.SelectedItem);
+                */
             }
         }
 
-        private void Exit_Click(object sender, RoutedEventArgs e) {
+        private void Exit_Click(object sender, EventArgs e) {
             this.Close();
         }
 
-        private void Delete_Click(object sender, RoutedEventArgs e) {
+        private void Delete_Click(object sender, EventArgs e) {
             XmlDocument xd = new XmlDocument();
             xd.Load("XMLFile1.xml");
             XmlElement xRoot = xd.DocumentElement;

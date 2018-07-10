@@ -1,27 +1,53 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using System.Xml;
+using System.Windows.Controls;
 
-namespace firstwtpf
-{
-    public partial class AddingWindow : Window
-    {
-        public AddingWindow()
-        {
+namespace firstwtpf {
+    public partial class AddingWindow : Window {
+        public AddingWindow() {
             InitializeComponent();
         }
 
-        private void Apply_Click(object sender, RoutedEventArgs e) {
+        public AddingWindow(ListView a) {
+            InitializeComponent();
+
+            Apply_Button.Click +=(sender, EventArgs)=> {
+                Apply_Click(sender, EventArgs, a);
+            };
+        }
+
+        private void Apply_Click(object sender, EventArgs e, ListView list) {
             if(PainterBox.Text != "" && TitleBox.Text != "" && DescriptionBox.Text != "") {
-                FirstWpfApp.MainWindow.fl = 0;                
-                FirstWpfApp.MainWindow.NewArt(PainterBox.Text, TitleBox.Text, DescriptionBox.Text);                                   
+                FirstWpfApp.MainWindow.NewArt(PainterBox.Text, TitleBox.Text, DescriptionBox.Text);
+
+                XmlDocument xd = new XmlDocument();
+                xd.Load("XMLFile1.xml");
+                XmlElement xRoot = xd.DocumentElement;
+                FirstWpfApp.MainWindow.Picture pic = new FirstWpfApp.MainWindow.Picture();
+                XmlNode xNode = xRoot.LastChild;
+                foreach (XmlNode childNode in xNode.ChildNodes) {
+                    if (childNode.Name == "Painter") {
+                        pic.Painter = childNode.InnerText;
+                    }
+
+                    if (childNode.Name == "Title") {
+                        pic.Title = childNode.InnerText;
+                    }
+
+                    if (childNode.Name == "Description") {
+                        pic.Description = childNode.InnerText;
+                    }
+                }
+                list.Items.Add(pic);
                 this.Close();
             } else {
                 MessageBox.Show("Fill in the fields","Empty");
             }
         }
         
-        private void Cancel_Click(object sender, RoutedEventArgs e) {
-            FirstWpfApp.MainWindow.fl = 1;
+        private void Cancel_Click(object sender, EventArgs e) {
             this.Close();
-        }
+        }        
     }
 }

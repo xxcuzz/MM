@@ -2,10 +2,8 @@
 using System.Windows;
 using System.Windows.Media.Imaging;
 
-namespace firstwtpf
-{
-    public partial class Watch_out : Window
-    {
+namespace firstwtpf {  
+    public partial class Watch_out : Window {
         public Watch_out(string p) {
             try {
                 InitializeComponent();

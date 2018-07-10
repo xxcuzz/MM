@@ -15,7 +15,6 @@
             <Setter Property="Control.FontWeight" Value="Bold"/>
             <Setter Property="Control.Background" Value="#f2edb3"/>
         </Style>
-
     </Window.Resources>
 
     <Grid x:Name ="LayoutRoot" Background="#4a756e">
@@ -35,8 +34,7 @@
             Grid.Row="0"
             Style="{StaticResource LightKhakiButton}"
             HorizontalContentAlignment="Left"
-            BorderThickness="0"
-            Click="Add_Click">
+            BorderThickness="0">
             Add art
             <Button.Background>
                 <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
