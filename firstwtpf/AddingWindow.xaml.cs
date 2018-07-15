@@ -20,7 +20,6 @@ namespace firstwtpf {
         private void Apply_Click(object sender, EventArgs e, ListView list) {
             if(PainterBox.Text != "" && TitleBox.Text != "" && DescriptionBox.Text != "") {
                 FirstWpfApp.MainWindow.NewArt(PainterBox.Text, TitleBox.Text, DescriptionBox.Text);
-
                 XmlDocument xd = new XmlDocument();
                 xd.Load("XMLFile1.xml");
                 XmlElement xRoot = xd.DocumentElement;
